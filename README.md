@@ -96,7 +96,7 @@ Instalar dependencias:
 Configuración de Base de Datos 
 Crear la base de datos con el nombre db_darwin y ejecutar el siguiente script dentro de la base de datos: 
 
-```sql
+
 
 CREATE DATABASE IF NOT EXISTS `db_darwin`
 DEFAULT CHARACTER SET utf8mb4

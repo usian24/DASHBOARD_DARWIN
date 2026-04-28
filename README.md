@@ -83,12 +83,20 @@ Estas entidades están relacionadas mediante claves foráneas para garantizar co
 ### Clonar repositorio
 ```bash
 git clone https://github.com/usian24/DASHBOARD_DARWIN.git
-cd 27-04-26
-Instalar dependencias
-npm install
-Configuración de Base de Datos
+### Entrar a la carpeta
+- cd 27-04-26 -> carpeta principal donde se pondran los demas comandos 
 
-Crear la base de datos y ejecutar el siguiente script:
+*************************************
+
+Instalar dependencias: 
+- npm install
+
+*************************************
+
+Configuración de Base de Datos 
+Crear la base de datos con el nombre db_darwin y ejecutar el siguiente script dentro de la base de datos: 
+
+```sql
 
 CREATE DATABASE IF NOT EXISTS `db_darwin`
 DEFAULT CHARACTER SET utf8mb4
@@ -181,6 +189,7 @@ CREATE TABLE `detalle_registro` (
 Variables de Entorno
 
 Crear un archivo .env en la raíz del proyecto:
+y pegar esta informacion: 
 
 PORT=3001
 DB_HOST=localhost
@@ -188,9 +197,13 @@ DB_USER=root
 DB_PASSWORD=
 DB_NAME=db_darwin
 DB_PORT=3306
-Ejecución
-node index.js
 
-Acceder desde el navegador:
+---
+**********************************************************
+Ejecución: 
 
-http://localhost:3001
+- node index.js
+
+Acceder desde el navegador: 
+
+http://localhost:3001 -> al hacer correr te madnara el propio puerto en la consola de visual... manten presionado la tecla (Ctrl) y presiona click a esa url y te mandara al proyecto

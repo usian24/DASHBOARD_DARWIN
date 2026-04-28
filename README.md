@@ -1,102 +1,94 @@
-# Sistema de Gestion y Trazabilidad Operativa "Darwin"
+# Darwin - Sistema de Gestión y Trazabilidad Operativa
 
-Este proyecto es una solucion Full-Stack robusta diseñada para el control, registro y mantenimiento de la trazabilidad de operaciones tecnicas en campo. Permite la gestion integral de personal, recursos logisticos y ubicaciones geograficas mediante una arquitectura de base de datos relacional de 9 tablas interconectadas.
+Darwin es una solución Full-Stack orientada a la gestión, control y trazabilidad de operaciones técnicas en campo. El sistema centraliza información crítica relacionada con personal, actividades, logística y ubicación geográfica, garantizando integridad de datos y seguimiento detallado de cada operación.
 
-Desarrollado como proyecto para la especialidad de Ingenieria de Software con Inteligencia Artificial en el instituto SENATI.
-
----
-
-## Especificaciones Tecnicas
-
-### Backend (Servidor y Logica)
-* Entorno de ejecucion: Node.js v24.14.0
-* Framework: Express.js
-* Gestion de Base de Datos: MySQL 2 (Driver relacional)
-* Seguridad y Configuracion: CORS (Cross-Origin Resource Sharing) y Dotenv para manejo de variables de entorno sensibles.
-
-### Frontend (Interfaz de Usuario)
-* Estilo Visual: Glassmorphism (Efecto de vidrio esmerilado con profundidad mediante CSS moderno).
-* Maquetacion: HTML5 y CSS3 (Diseño responsivo y amigable al usuario).
-* Logica de Cliente: JavaScript Vanilla (ES6+) con Fetch API para comunicacion asincrona con el servidor.
+Este proyecto fue desarrollado como parte de la formación en Ingeniería de Software con Inteligencia Artificial en SENATI.
 
 ---
 
-## Arquitectura del Sistema
+## Descripción General
 
-El sistema administra 9 modulos fundamentales que garantizan la integridad de los datos:
+El sistema permite registrar, consultar y auditar operaciones técnicas mediante un modelo relacional estructurado. Cada registro consolidado mantiene relaciones entre múltiples entidades, permitiendo trazabilidad completa desde el tipo de acción hasta la ubicación donde se ejecutó.
 
-1. Tipos de Agente (Roles de personal)
-2. Acciones (Categorias principales)
-3. Acciones Especificas (Subcategorias de labor)
-4. Actividades (Tareas tecnicas programadas)
-5. Subacciones (Detalles operativos)
-6. Tipos de Transporte (Vehiculos y logistica)
-7. Provincias (Ubicacion regional)
-8. Distritos (Ubicacion local)
-9. Registro Maestro (Consolidado de operacion con trazabilidad completa)
+Está diseñado bajo un enfoque práctico, priorizando:
+- Integridad referencial
+- Automatización de interfaz
+- Escalabilidad del modelo de datos
+- Simplicidad en el uso
 
 ---
 
-## Funcionalidades Destacadas
+## Características Principales
 
-* Dashboard Estadistico: Panel principal que realiza consultas asincronas a la base de datos para mostrar el conteo real de registros y el estado de los servicios.
-* Motor de UI Dinamico: Sistema que genera automaticamente tablas, formularios y modales de edicion a partir de un diccionario de datos centralizado.
-* Integridad Referencial UX: Los formularios detectan automaticamente las llaves foraneas y muestran menus desplegables (Selects) para evitar errores de ingreso de datos manuales.
-* Impresion de Reportes: Funcion integrada para generar reportes individuales en formato de boleta profesional, formateados para impresion o guardado como PDF.
-* CRUD Completo: Capacidad de Crear, Leer, Actualizar y Eliminar registros en todas las tablas del sistema.
+### Gestión Integral de Datos
+Administración de múltiples entidades relacionadas como agentes, acciones, actividades, transporte y zonas geográficas.
+
+### Trazabilidad Completa
+Cada registro en el sistema consolida información cruzada mediante claves foráneas, permitiendo seguimiento detallado de cada operación.
+
+### Interfaz Dinámica
+Generación automática de formularios, tablas y modales basada en un diccionario de datos.
+
+### Validación Relacional
+Uso de listas desplegables (selects) para garantizar consistencia en el ingreso de datos.
+
+### Dashboard
+Visualización del estado del sistema mediante consultas en tiempo real.
+
+### Generación de Reportes
+Creación de reportes individuales listos para impresión o exportación.
+
+### CRUD Completo
+Operaciones de creación, lectura, actualización y eliminación en todas las entidades.
 
 ---
 
-## Guia de Instalacion y Despliegue Local
+## Stack Tecnológico
 
-Siga estrictamente estos pasos para ejecutar el proyecto en su computador:
+### Backend
+- Node.js
+- Express.js
+- MySQL (MySQL2)
+- Dotenv
+- CORS
 
-### 1. Clonacion del Proyecto
-Descargue el codigo fuente desde el repositorio oficial:
+### Frontend
+- HTML5
+- CSS3 (Glassmorphism)
+- JavaScript (ES6+)
+- Fetch API
+
+---
+
+## Modelo del Sistema
+
+El sistema se basa en 9 entidades principales:
+
+1. Tipo de Agente  
+2. Acción  
+3. Acción Específica  
+4. Actividad  
+5. Subacción  
+6. Tipo de Transporte  
+7. Provincia  
+8. Distrito  
+9. Detalle de Registro  
+
+Estas entidades están relacionadas mediante claves foráneas para garantizar consistencia e integridad de datos.
+
+---
+
+## Instalación y Ejecución
+
+### Clonar repositorio
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/usian24/DASHBOARD_DARWIN.git
 cd 27-04-26
-2. Instalacion de Dependencias
-Ejecute el siguiente comando para reconstruir la carpeta "node_modules" y descargar las librerias necesarias (Express, MySQL2, etc.):
-
-Bash
+Instalar dependencias
 npm install
-3. Configuracion de la Base de Datos
-Es obligatorio restaurar la base de datos antes de iniciar el servidor:
+Configuración de Base de Datos
 
-Inicie su servicio MySQL (Laragon).
-
-Cree una base de datos nueva llamada: darwin_db
-
-Importe el archivo "darwin_db.sql" ubicado en la raiz de este proyecto dentro de la base de datos creada.
-
-4. Archivo de Configuracion (.env)
-Debe crear un archivo de texto llamado ".env" en la raiz del proyecto (al nivel de index.js) con el siguiente contenido:
-
-Fragmento de código
-PORT=3001
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=darwin_db
-DB_PORT=3306
-5. Ejecucion del Sistema
-Para iniciar el servidor de manera oficial, utilice el comando estandar de Node.js:
-
-Bash
-node index.js
-El sistema confirmara el inicio con el mensaje: "Sistema Darwin corriendo en http://localhost:3001".
-
-6. Acceso
-Abra su navegador y entre a: http://localhost:3001
-
-Autor
-Desarrollador: Jhon Alberto Aguilar Quispe
-
-Institucion: SENATI (Huánuco, Peru)
-**********************************************************************************************************************+++++
-base de datos:
-
+Crear la base de datos y ejecutar el siguiente script:
 
 CREATE DATABASE IF NOT EXISTS `db_darwin`
 DEFAULT CHARACTER SET utf8mb4
@@ -104,80 +96,63 @@ COLLATE utf8mb4_general_ci;
 
 USE `db_darwin`;
 
--- Tabla: accion
-CREATE TABLE IF NOT EXISTS `accion` (
-  `ID_ACCION` INT NOT NULL AUTO_INCREMENT,
-  `NOMBRE_ABREVIADO` VARCHAR(50) DEFAULT NULL,
-  `NOMBRE_ACCION` VARCHAR(50) DEFAULT NULL,
-  `CODIGO_A_E` VARCHAR(50) DEFAULT NULL,
-  `CODIGO_P_ACCION` VARCHAR(50) DEFAULT NULL,
-  PRIMARY KEY (`ID_ACCION`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `accion` (
+  `ID_ACCION` INT AUTO_INCREMENT PRIMARY KEY,
+  `NOMBRE_ABREVIADO` VARCHAR(50),
+  `NOMBRE_ACCION` VARCHAR(50),
+  `CODIGO_A_E` VARCHAR(50),
+  `CODIGO_P_ACCION` VARCHAR(50)
+);
 
--- Tabla: accion_especifica
-CREATE TABLE IF NOT EXISTS `accion_especifica` (
-  `ID_AE` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accion_especifica` (
+  `ID_AE` INT AUTO_INCREMENT PRIMARY KEY,
   `NOMBRE_ABREVIADO` VARCHAR(50) NOT NULL,
   `ACCION_ESPECIFICA` VARCHAR(50) NOT NULL,
-  `CODIGO_A_E` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`ID_AE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `CODIGO_A_E` VARCHAR(50) NOT NULL
+);
 
--- Tabla: tipo_agente
-CREATE TABLE IF NOT EXISTS `tipo_agente` (
-  `ID_TA` INT NOT NULL AUTO_INCREMENT,
-  `NOMBRE_TA` VARCHAR(50),
-  PRIMARY KEY (`ID_TA`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `tipo_agente` (
+  `ID_TA` INT AUTO_INCREMENT PRIMARY KEY,
+  `NOMBRE_TA` VARCHAR(50)
+);
 
--- Tabla: actividad
-CREATE TABLE IF NOT EXISTS `actividad` (
-  `ID_ACTIVIDAD` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `actividad` (
+  `ID_ACTIVIDAD` INT AUTO_INCREMENT PRIMARY KEY,
   `NOMBRE_ACTIVIDAD` VARCHAR(50) NOT NULL,
   `CODIGO_ACTIVIDAD` VARCHAR(50) NOT NULL,
   `ID_TA` INT,
-  PRIMARY KEY (`ID_ACTIVIDAD`),
   FOREIGN KEY (`ID_TA`) REFERENCES `tipo_agente`(`ID_TA`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
--- Tabla: subaccion
-CREATE TABLE IF NOT EXISTS `subaccion` (
-  `ID_SA` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `subaccion` (
+  `ID_SA` INT AUTO_INCREMENT PRIMARY KEY,
   `NOMBRE_ABREVIADO` VARCHAR(50) NOT NULL,
   `SUB_ACCION_ESP` VARCHAR(50) NOT NULL,
   `CONCAT` VARCHAR(50) NOT NULL,
   `CODIGO_S_A_E` VARCHAR(50) NOT NULL,
   `ID_AE` INT NOT NULL,
-  PRIMARY KEY (`ID_SA`),
   FOREIGN KEY (`ID_AE`) REFERENCES `accion_especifica`(`ID_AE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
--- Tabla: tipo_transporte
-CREATE TABLE IF NOT EXISTS `tipo_transporte` (
-  `id_tt` INT NOT NULL AUTO_INCREMENT,
-  `NOMBRE_TRANSPORTE` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`id_tt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `tipo_transporte` (
+  `id_tt` INT AUTO_INCREMENT PRIMARY KEY,
+  `NOMBRE_TRANSPORTE` VARCHAR(50) NOT NULL
+);
 
--- Tabla: zona_provincia
-CREATE TABLE IF NOT EXISTS `zona_provincia` (
-  `id_zp` INT NOT NULL AUTO_INCREMENT,
-  `NOMBRE_PROVINCIA` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`id_zp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `zona_provincia` (
+  `id_zp` INT AUTO_INCREMENT PRIMARY KEY,
+  `NOMBRE_PROVINCIA` VARCHAR(50) NOT NULL
+);
 
--- Tabla: zona_distrito
-CREATE TABLE IF NOT EXISTS `zona_distrito` (
-  `id_zd` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zona_distrito` (
+  `id_zd` INT AUTO_INCREMENT PRIMARY KEY,
   `NOMBRE_DISTRITO` VARCHAR(50),
   `id_zp` INT,
-  PRIMARY KEY (`id_zd`),
   FOREIGN KEY (`id_zp`) REFERENCES `zona_provincia`(`id_zp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
--- Tabla: detalle_registro
-CREATE TABLE IF NOT EXISTS `detalle_registro` (
-  `ID_REGISTRO` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `detalle_registro` (
+  `ID_REGISTRO` INT AUTO_INCREMENT PRIMARY KEY,
   `ID_ACCION` INT,
   `ID_AE` INT,
   `ID_SA` INT,
@@ -193,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `detalle_registro` (
   `CARTA_LINEA` VARCHAR(50),
   `OBSERVACIONES` VARCHAR(50),
   `CONTRATO` VARCHAR(50),
-  PRIMARY KEY (`ID_REGISTRO`),
+
   FOREIGN KEY (`ID_ACCION`) REFERENCES `accion`(`ID_ACCION`),
   FOREIGN KEY (`ID_AE`) REFERENCES `accion_especifica`(`ID_AE`),
   FOREIGN KEY (`ID_SA`) REFERENCES `subaccion`(`ID_SA`),
@@ -202,4 +177,20 @@ CREATE TABLE IF NOT EXISTS `detalle_registro` (
   FOREIGN KEY (`id_zd`) REFERENCES `zona_distrito`(`id_zd`),
   FOREIGN KEY (`id_zp`) REFERENCES `zona_provincia`(`id_zp`),
   FOREIGN KEY (`ID_ACTIVIDAD`) REFERENCES `actividad`(`ID_ACTIVIDAD`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
+Variables de Entorno
+
+Crear un archivo .env en la raíz del proyecto:
+
+PORT=3001
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=db_darwin
+DB_PORT=3306
+Ejecución
+node index.js
+
+Acceder desde el navegador:
+
+http://localhost:3001

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Darwin | Panel de Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    
+    <div class="background-shapes"></div>
+
+    <main class="glass-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Darwin<span>.</span></h2>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-target="dashboard">Dashboard</button>
+                <button class="nav-btn" data-target="tipo_agente">Tipos de Agente</button>
+                <button class="nav-btn" data-target="accion">Acciones</button>
+                <button class="nav-btn" data-target="accion_especifica">Acciones Específicas</button>
+                <button class="nav-btn" data-target="actividad">Actividades</button>
+                <button class="nav-btn" data-target="subaccion">Subacciones</button>
+                <button class="nav-btn" data-target="tipo_transporte">Tipos de Transporte</button>
+                <button class="nav-btn" data-target="zona_provincia">Provincias</button>
+                <button class="nav-btn" data-target="zona_distrito">Distritos</button>
+                <button class="nav-btn" data-target="detalle_registro">Registro Maestro</button>
+            </nav>
+            </div>
+        </aside>
+
+        <section class="content">
+            <header>
+                <h1>Gestión de Datos</h1>
+                <div class="user-profile">
+                    <span>Administrador</span>
+                    <div class="avatar">J</div>
+                </div>
+            </header>
+
+            <div class="dynamic-view" id="main-view">
+                <div class="welcome-card glass-card">
+                    <h3>Bienvenido al Sistema Darwin</h3>
+                    <p>Iniciando módulos de la base de datos...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal glass-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Crear Nuevo Registro</h3>
+                <button id="close-modal" class="btn-icon">❌</button>
+            </div>
+            <form id="dynamic-form">
+                <div id="form-inputs" class="form-grid"></div>
+                
+                <div class="modal-footer">
+                    <button type="submit" class="btn-primary">Guardar Registro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

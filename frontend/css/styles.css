@@ -1,0 +1,315 @@
+:root {
+    --bg-color: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Formas de fondo para dar profundidad */
+.background-shapes {
+    position: absolute;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    top: -10%;
+    right: -10%;
+    opacity: 0.15;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+/* Contenedor principal estilo vidrio */
+.glass-container {
+    width: 95vw;
+    height: 90vh;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    z-index: 1;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    border-right: 1px solid var(--glass-border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-shrink: 0; /* Evita que el menú lateral se aplaste */
+}
+
+.logo h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--text-main);
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.content {
+    flex: 1;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0; /* LA SOLUCIÓN MÁGICA: Obliga a la caja a respetar el ancho de la pantalla */
+    overflow-x: hidden; /* Evita que todo el bloque derecho se desborde */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Tarjetas */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+    width: 100%; /* Asegura que la tarjeta ocupe el espacio correcto */
+}
+
+.glass-card:hover {
+    transform: translateY(-2px); /* Un hover más sutil para no marear */
+}
+
+/* --- ESTILOS DE LA TABLA DINÁMICA --- */
+.darwin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: max-content; /* Fuerza a la tabla a no apachurrar los textos */
+}
+
+.darwin-table th {
+    padding: 1rem;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    white-space: nowrap; /* Evita que los títulos se rompan en dos líneas */
+}
+
+.darwin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.darwin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Congelar la última columna de Acciones */
+.darwin-table th:last-child,
+.darwin-table td:last-child {
+    position: sticky;
+    right: 0;
+    background: #111827; /* Mismo color azul muy oscuro del fondo */
+    border-left: 2px solid var(--glass-border);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+    z-index: 2;
+}
+
+/* Personalizar la barra de desplazamiento de las tablas */
+.glass-card::-webkit-scrollbar {
+    height: 12px;
+}
+.glass-card::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2); 
+    border-radius: 10px;
+    margin: 0 10px;
+}
+.glass-card::-webkit-scrollbar-thumb {
+    background: var(--accent); 
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Borde para que parezca flotante */
+}
+.glass-card::-webkit-scrollbar-thumb:hover {
+    background: #2563eb; 
+}
+
+/* --- BOTONES MODERNOS --- */
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    white-space: nowrap; /* Evita que el botón de Crear Nuevo se rompa */
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    background: #2563eb;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    transition: transform 0.2s;
+    opacity: 0.8;
+}
+
+.btn-icon:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* Animación de carga */
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* --- MODAL MAGIC --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+    opacity: 1; transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0; pointer-events: none;
+}
+
+.modal {
+    width: 90%; max-width: 500px;
+    transform: translateY(0); transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto; 
+}
+
+.modal-overlay.hidden .modal {
+    transform: translateY(-50px);
+}
+
+.modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem; 
+    border-bottom: 1px solid var(--glass-border); 
+    padding-bottom: 1rem;
+}
+
+.form-grid {
+    display: grid; gap: 1.2rem; margin-bottom: 1.5rem;
+}
+
+.input-group {
+    display: flex; flex-direction: column; gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.85rem; color: var(--text-muted); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+
+.input-group input, .input-group select {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    padding: 0.8rem; border-radius: 8px;
+    color: var(--text-main); font-family: 'Inter', sans-serif;
+    outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.modal-footer {
+    text-align: right;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+}

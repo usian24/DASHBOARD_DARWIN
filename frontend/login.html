@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Darwin System</title>
+    <!-- Fuente Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Luces de fondo estilo Darwin */
+        .background-shapes {
+            position: absolute;
+            width: 40vw; height: 40vw;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            top: -10%; right: -10%;
+            opacity: 0.15; z-index: 0;
+            border-radius: 50%; filter: blur(80px);
+        }
+
+        .background-shapes-2 {
+            position: absolute;
+            width: 30vw; height: 30vw;
+            background: radial-gradient(circle, #10b981 0%, transparent 70%);
+            bottom: -10%; left: -10%;
+            opacity: 0.1; z-index: 0;
+            border-radius: 50%; filter: blur(80px);
+        }
+
+        /* Tarjeta principal Login */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 420px;
+            z-index: 1;
+        }
+
+        .logo h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.2rem; }
+        .logo span { color: var(--accent); }
+
+        .form-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+
+        /* Estilo de los inputs */
+        .input-group { display: flex; flex-direction: column; gap: 0.5rem; text-align: left; }
+        .input-group label {
+            font-size: 0.85rem; color: var(--text-muted); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .input-group input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            padding: 1rem; border-radius: 10px;
+            color: var(--text-main); font-size: 1rem;
+            outline: none; transition: all 0.3s ease;
+        }
+        .input-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Botones */
+        .btn-primary {
+            background: var(--accent); color: #fff;
+            border: none; padding: 1rem; border-radius: 10px;
+            font-weight: 600; font-size: 1rem; cursor: pointer;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            margin-top: 0.5rem;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); background: #2563eb; }
+        
+        .btn-success { background: #10b981; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+        .btn-success:hover { background: #059669; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5); }
+
+        /* Toggle text */
+        .toggle-text { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; }
+        .toggle-text span { color: var(--accent); cursor: pointer; font-weight: 600; transition: color 0.3s; }
+        .toggle-text span:hover { color: #fff; text-decoration: underline; }
+
+        .hidden-form { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="background-shapes"></div>
+    <div class="background-shapes-2"></div>
+
+    <div class="glass-card">
+        <div class="logo" style="text-align: center; margin-bottom: 2rem;">
+            <h2>Darwin<span>.</span></h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Panel de Control Operativo</p>
+        </div>
+
+        <!-- FORMULARIO DE INGRESO -->
+        <form id="login-form" class="form-grid">
+            <div class="input-group">
+                <label>Usuario</label>
+                <input type="text" id="login-username" required placeholder="Ingresa tu usuario" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>Contraseña</label>
+                <input type="password" id="login-password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-primary">Ingresar al Sistema</button>
+            <p class="toggle-text">¿No tienes cuenta? <span id="btn-show-register">Regístrate aquí</span></p>
+        </form>
+
+        <!-- FORMULARIO DE REGISTRO -->
+        <form id="register-form" class="form-grid hidden-form">
+            <div class="input-group">
+                <label>Nombre Completo</label>
+                <input type="text" id="reg-nombre" required placeholder="Ej. Pedro Montesinos" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>Usuario</label>
+                <input type="text" id="reg-username" required placeholder="Crea un usuario" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>Contraseña</label>
+                <input type="password" id="reg-password" required placeholder="Mínimo 6 caracteres">
+            </div>
+            <button type="submit" class="btn-primary btn-success">Crear Cuenta</button>
+            <p class="toggle-text">¿Ya tienes cuenta? <span id="btn-show-login">Inicia sesión</span></p>
+        </form>
+    </div>
+
+    <!-- Enlace al archivo JS que maneja la lógica -->
+    <script src="./js/login.js"></script>
+</body>
+</html>

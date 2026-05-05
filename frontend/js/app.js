@@ -1,5 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("🚀 Sistema Darwin UI Inicializado - Modo Avanzado.");
+    // ==========================================
+    // 🛡️ GUARDIÁN DE SEGURIDAD Y PERFIL
+    // ==========================================
+    const token = localStorage.getItem('darwin_token');
+    
+    // Si no hay token, redirigir al login inmediatamente
+    if (!token) {
+        window.location.href = '/login.html';
+        return; // Detiene la ejecución del resto del dashboard
+    }
+
+    // Leer los datos del usuario logueado
+    const userDataString = localStorage.getItem('darwin_user');
+    if (userDataString) {
+        const userData = JSON.parse(userDataString);
+        
+        // Inyectar el nombre en el HTML
+        document.getElementById('user-name-display').innerText = userData.nombre;
+        
+        // Inyectar el rol en el menú desplegable
+        if(document.getElementById('user-role-display')) {
+            document.getElementById('user-role-display').innerText = userData.rol || 'Usuario';
+        }
+
+        // Sacar la primera letra del nombre para el Avatar (Ej. "Lucian" -> "L")
+        const inicial = userData.nombre.charAt(0).toUpperCase();
+        document.getElementById('user-avatar-display').innerText = inicial;
+    }
+
+    // Lógica del menú desplegable (Abrir/Cerrar)
+    const userProfileBtn = document.getElementById('user-profile-btn');
+    const userDropdown = document.getElementById('user-dropdown');
+    const btnLogout = document.getElementById('btn-logout');
+
+    // Mostrar/Ocultar al hacer clic en el perfil
+    userProfileBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita que el clic se propague al documento
+        if (userDropdown.style.display === 'none' || userDropdown.style.display === '') {
+            userDropdown.style.display = 'flex';
+        } else {
+            userDropdown.style.display = 'none';
+        }
+    });
+
+    // Cerrar el menú si se hace clic en cualquier otro lado de la pantalla
+    document.addEventListener('click', () => {
+        userDropdown.style.display = 'none';
+    });
+
+    // Acción de CERRAR SESIÓN
+    btnLogout.addEventListener('click', () => {
+        // Borramos las credenciales del navegador
+        localStorage.removeItem('darwin_token');
+        localStorage.removeItem('darwin_user');
+        
+        // Redirigimos al login
+        window.location.href = '/login.html';
+    });
+    // ==========================================
+    // FIN DEL GUARDIÁN
+    // ==========================================
 
     const viewContainer = document.getElementById('main-view');
     const navButtons = document.querySelectorAll('.nav-btn');

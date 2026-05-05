@@ -37,9 +37,14 @@ app.use('/api/zona-distrito', zonaDistritoRoutes);
 // 9
 const detalleRegistroRoutes = require('./routes/detalleRegistroRoutes');
 app.use('/api/detalle-registro', detalleRegistroRoutes);
+// 10
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
  
 // Servir la carpeta frontend que ahora está al mismo nivel que index.js
 app.use(express.static(path.join(__dirname, 'frontend')));
+
+
 
 // Cualquier otra ruta carga el diseño principal
 app.get(/.*/, (req, res) => {

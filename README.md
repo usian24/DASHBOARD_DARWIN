@@ -185,6 +185,21 @@ CREATE TABLE `detalle_registro` (
   FOREIGN KEY (`id_zd`) REFERENCES `zona_distrito`(`id_zd`),
   FOREIGN KEY (`id_zp`) REFERENCES `zona_provincia`(`id_zp`),
   FOREIGN KEY (`ID_ACTIVIDAD`) REFERENCES `actividad`(`ID_ACTIVIDAD`)
+
+  -- Creamos la tabla para el Login
+CREATE TABLE `usuario` (
+  `id_usuario` INT AUTO_INCREMENT PRIMARY KEY,
+  `nombre_completo` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(50) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL,
+  `rol` VARCHAR(50) DEFAULT 'Administrador'
+);
+
+-- Insertamos un usuario administrador de prueba 
+-- (Nota: En un entorno real, la contraseña debe ir encriptada)
+INSERT INTO `usuario` (`nombre_completo`, `username`, `password`, `rol`) 
+VALUES ('Administrador Darwin', 'admin', 'admin123', 'Administrador');
+
 );
 Variables de Entorno
 
